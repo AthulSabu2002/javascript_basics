@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars AJAX Example</title>
+</head>
+<body>
+    <h1>Star Wars Character Fetcher</h1>
+    <div id="result">Click the button to load a Star Wars character!</div>
+    <button onclick="loadStarWarsData()">Fetch Star Wars Data</button>
+
+    <script>
+        function loadStarWarsData() {
+            fetch("https://swapi.dev/api/people/1/") // Fetch Luke Skywalker's data
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    // Update the `result` div with data from the API
+                    document.getElementById("result").innerHTML = `
+                        <strong>Name:</strong> ${data.name}<br>
+                        <strong>Height:</strong> ${data.height} cm<br>
+                        <strong>Mass:</strong> ${data.mass} kg<br>
+                        <strong>Birth Year:</strong> ${data.birth_year}
+                    `;
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    document.getElementById("result").innerText = "Failed to fetch data.";
+                });
+        }
+    </script>
+</body>
+</html>
