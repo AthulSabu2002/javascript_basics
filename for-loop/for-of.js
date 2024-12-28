@@ -1,3 +1,4 @@
+// Array of character objects with their properties
 const characters = [
     {
         title: 'Ninja',
@@ -21,7 +22,9 @@ const characters = [
     }
 ]
 
+// Outer loop: iterate through each character object in the array
 for (let character of characters){
+    // Inner loop: iterate through each power in the character's powers array
     for(let power of character.powers) {
         console.log(power)
     }
